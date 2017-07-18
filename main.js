@@ -173,8 +173,6 @@ function setUpdates()
     UPDATE_STEP = Math.max(1, Math.floor(UPDATE_ITRS/10));
 
     console.log(
-        'speed:',speed,
-        'smoothness:',smoothness,
         'UPDATE_TIME:',UPDATE_TIME,
         'UPDATE_ITRS:',UPDATE_ITRS,
         'UPDATE_STEP:',UPDATE_STEP
