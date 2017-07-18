@@ -122,6 +122,7 @@ Reset the program state
 function restartProg()
 {
     program.reset();
+    resetUpdates();
 }
 
 // Default console logging function implementation
@@ -179,12 +180,14 @@ function setUpdates()
         'UPDATE_ITRS:',UPDATE_ITRS,
         'UPDATE_STEP:',UPDATE_STEP
     );
-    startMainLoop();
+    
+    if (! program.halted) {
+        startMainLoop();
+    }
 }
 function resetUpdates()
 {
     clearInterval(updateInterv);
-    document.getElementById("status").textContent = "Paused";
     setUpdates();
     console.log('updateInterv:',updateInterv);
 }
