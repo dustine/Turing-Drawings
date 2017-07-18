@@ -198,7 +198,7 @@ function updateRender()
     var startItrc = program.itrCount;
 
     // Until the update time is exhausted
-    for (;;)
+    for (; ! program.halted ;)
     {
         // Update the program
         program.update(UPDATE_STEP);
