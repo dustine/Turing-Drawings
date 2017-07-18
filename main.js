@@ -168,10 +168,8 @@ Update speed when edited by user
 */
 function setUpdates()
 {
-    var speed = parseInt(document.getElementById("speed").value);
-    var smoothness = parseInt(document.getElementById("smoothness").value);
-    UPDATE_TIME = Math.floor(1000/smoothness);
-    UPDATE_ITRS = Math.floor(speed/UPDATE_TIME);
+    UPDATE_ITRS = parseInt(document.getElementById("steps").value);
+    UPDATE_TIME = Math.floor(1000/parseInt(document.getElementById("fps").value));
     UPDATE_STEP = Math.max(1, Math.floor(UPDATE_ITRS/10));
 
     console.log(
@@ -189,8 +187,6 @@ function resetUpdates()
     setUpdates();
     console.log('updateInterv:',updateInterv);
 }
-document.getElementById("speed").addEventListener('change', setUpdates);
-document.getElementById("smoothness").addEventListener('change', setUpdates);
 
 /**
 Update the rendering
