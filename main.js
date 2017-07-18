@@ -166,12 +166,10 @@ var UPDATE_STEP = 1;
 /*
 Update speed when edited by user
 */
-var boxSpeed = document.getElementById("speed");
-var boxSmoothness = document.getElementById("smoothness")
 function setUpdates()
 {
-    var speed = parseInt(boxSpeed.value);
-    var smoothness = parseInt(boxSmoothness.value);
+    var speed = parseInt(document.getElementById("speed").value);
+    var smoothness = parseInt(document.getElementById("smoothness").value);
     UPDATE_TIME = Math.floor(1000/smoothness);
     UPDATE_ITRS = Math.floor(speed/UPDATE_TIME);
     UPDATE_STEP = Math.max(1, Math.floor(UPDATE_ITRS/10));
@@ -191,8 +189,8 @@ function resetUpdates()
     setUpdates();
     console.log('updateInterv:',updateInterv);
 }
-boxSpeed.addEventListener('change', setUpdates);
-boxSmoothness.addEventListener('change', setUpdates);
+document.getElementById("speed").addEventListener('change', setUpdates);
+document.getElementById("smoothness").addEventListener('change', setUpdates);
 
 /**
 Update the rendering
