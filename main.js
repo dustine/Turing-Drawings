@@ -73,13 +73,18 @@ function init()
         randomProg();
     }
 
-    // Set the update function to be called regularly
+    setUpdates();
+}
+window.addEventListener("load", init, false);
+
+// Set the update function to be called regularly
+function startMainLoop()
+{
     updateInterv = setInterval(
         updateRender,
         UPDATE_TIME
     );
 }
-window.addEventListener("load", init, false);
 
 /**
 Generate a new random program
@@ -152,6 +157,35 @@ Maximum iterations per update
 */
 var UPDATE_ITRS = 1;
 
+/*
+Minimum iterations per update
+(actual number of iterations will be a positive integer multiple of this value)
+*/
+var UPDATE_STEP = 1;
+
+/*
+Update speed when edited by user
+*/
+var boxSpeed = document.getElementById("speed");
+var boxSmoothness = document.getElementById("smoothness")
+function setUpdates()
+{
+    var speed = parseInt(boxSpeed.value);
+    var smoothness = parseInt(boxSmoothness.value);
+    UPDATE_TIME = Math.floor(1000/smoothness);
+    UPDATE_ITRS = Math.floor(speed/UPDATE_TIME);
+    UPDATE_STEP = Math.max(1, Math.floor(UPDATE_ITRS/10));
+    
+    startMainLoop();
+}
+function resetUpdates()
+{
+    clearInterval(updateInterv);
+    setUpdates();
+}
+boxSpeed.addEventListener('change', setUpdates);
+boxSmoothness.addEventListener('change', setUpdates);
+
 /**
 Update the rendering
 */
@@ -164,7 +198,7 @@ function updateRender()
     for (;;)
     {
         // Update the program
-        program.update(1);
+        program.update(UPDATE_STEP);
 
         var curTime = (new Date()).getTime();
         var curItrc = program.itrCount;
