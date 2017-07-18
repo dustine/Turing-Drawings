@@ -84,6 +84,8 @@ function startMainLoop()
         updateRender,
         UPDATE_TIME
     );
+    
+    document.getElementById("status").textContent = "Running";
 }
 
 /**
@@ -182,6 +184,7 @@ function setUpdates()
 function resetUpdates()
 {
     clearInterval(updateInterv);
+    document.getElementById("status").textContent = "Paused";
     setUpdates();
     console.log('updateInterv:',updateInterv);
 }
