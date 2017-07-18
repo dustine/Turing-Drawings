@@ -145,7 +145,7 @@ var colorMap = [
 /***
 Time per update, in milliseconds
 */
-var UPDATE_TIME = 250;
+var UPDATE_TIME = 40;
 
 /**
 Maximum iterations per update
