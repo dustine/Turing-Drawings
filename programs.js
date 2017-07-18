@@ -116,6 +116,9 @@ Program.prototype.reset = function ()
     // Initialize the image
     for (var i = 0; i < this.map.length; ++i)
         this.map[i] = 0;
+    
+    // Running
+    this.halted = false;
 }
 
 Program.prototype.toString = function ()
@@ -161,7 +164,7 @@ Program.fromString = function (str, mapWidth, mapHeight)
 
 Program.prototype.update = function (numItrs)
 {
-    for (var i = 0; i < numItrs; ++i)
+    for (var i = 0; (i < numItrs) && !(this.halted); ++i)
     {
         var sy = this.map[this.mapWidth * this.yPos + this.xPos];
         var st = this.state;
@@ -205,7 +208,10 @@ Program.prototype.update = function (numItrs)
             break;
 
             default:
-            error('invalid action: ' + ac);
+            clearInterval(updateInterv);
+            this.halted = true;
+            document.getElementById("status").textContent = "Halted";
+            break;
         }
 
         /*
