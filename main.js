@@ -175,13 +175,21 @@ function setUpdates()
     UPDATE_TIME = Math.floor(1000/smoothness);
     UPDATE_ITRS = Math.floor(speed/UPDATE_TIME);
     UPDATE_STEP = Math.max(1, Math.floor(UPDATE_ITRS/10));
-    
+
+    console.log(
+        'speed:',speed,
+        'smoothness:',smoothness,
+        'UPDATE_TIME:',UPDATE_TIME,
+        'UPDATE_ITRS:',UPDATE_ITRS,
+        'UPDATE_STEP:',UPDATE_STEP
+    );
     startMainLoop();
 }
 function resetUpdates()
 {
     clearInterval(updateInterv);
     setUpdates();
+    console.log('updateInterv:',updateInterv);
 }
 boxSpeed.addEventListener('change', setUpdates);
 boxSmoothness.addEventListener('change', setUpdates);
