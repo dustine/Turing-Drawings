@@ -173,7 +173,7 @@ function setUpdates()
 {
     UPDATE_ITRS = parseInt(document.getElementById("steps").value);
     UPDATE_TIME = Math.floor(1000/parseInt(document.getElementById("fps").value));
-    UPDATE_STEP = Math.max(1, Math.floor(UPDATE_ITRS/10));
+    UPDATE_STEP = Math.max(1, Math.floor(UPDATE_ITRS/16));
 
     console.log(
         'UPDATE_TIME:',UPDATE_TIME,
